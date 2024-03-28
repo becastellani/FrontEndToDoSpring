@@ -1,5 +1,3 @@
-// Função para buscar todos os ToDos
-// Função para buscar todos os ToDos
 async function fetchTodos() {
     const response = await fetch('http://localhost:8080/todo');
     const todos = await response.json();
@@ -22,7 +20,6 @@ async function fetchTodos() {
 }
 
 
-// Função para adicionar novo ToDo
 async function addTodo() {
     const todoInput = document.getElementById('todoInput');
     const description = todoInput.value.trim();
@@ -41,7 +38,6 @@ async function addTodo() {
     }
 }
 
-// Função para deletar ToDo
 async function deleteTodo(id) {
     const response = await fetch(`http://localhost:8080/todo/${id}`, {
         method: 'DELETE'
@@ -56,7 +52,7 @@ async function editTodo(id) {
     if (newDescription !== null && newDescription.trim() !== "") {
         const updatedTodo = {
             description: newDescription.trim(),
-            status: false // Você pode adicionar a lógica para definir o status aqui, se necessário
+            status: false 
         };
         const response = await fetch(`http://localhost:8080/todo/${id}`, {
             method: 'PUT',
@@ -110,11 +106,10 @@ async function markAsToDo(id) {
 }
 
 
-// Ao enviar o formulário, chama a função addTodo
+
 document.getElementById('todoForm').addEventListener('submit', function(event) {
     event.preventDefault();
     addTodo();
 });
 
-// Busca os ToDos ao carregar a página
 fetchTodos();
